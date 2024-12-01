@@ -22,8 +22,11 @@ else:
     st.error(f"Model file not found: {model_path}")
     model = None
 
-class_names = ['Apple', 'Cat', 'Airplane', 'Ear', 'Crab', 'Car', 'Eye', 'Banana', 'Bus', 'Star', 'Sun', 'Parrot', 'Dog',
-               'Mushroom', 'Cake', 'Elephant', 'Circle', 'Butterfly', 'Triangle', 'Mug']
+class_names = ['Lollipop', 'Basket', 'Apple', 'Cat', 'Calculator', 'Airplane', 'Ear', 'Mountain', 'Cloud', 'Foot',
+               'Crab', 'Clock', 'Car', 'Axe', 'Eye', 'Flower', 'Hot Air Balloon', 'Banana', 'Knife', 'Bicycle', 'Line',
+               'Bus', 'Star', 'Sun', 'Leaf', 'Ice Cream', 'Fish', 'Parrot', 'Duck', 'Dog', 'Mushroom', 'Headphones',
+               'Hat', 'Cake', 'Envelope', 'Campfire', 'Key', 'Elephant', 'Carrot', 'Bird', 'Candle', 'Cactus', 'Ant',
+               'Circle', 'Butterfly', 'Triangle', 'Mug', 'House']
 
 # Initialize the drawing board dimensions
 WIDTH, HEIGHT = 28, 28
@@ -37,7 +40,7 @@ def predict_drawing(image, top_k=5):
 
 
 # Streamlit UI
-st.title("Quick Draw Game ✈️")
+st.title("Quick Draw Game")
 st.write("Draw something on the board...")
 
 # Initialize session state for canvas and prediction result
