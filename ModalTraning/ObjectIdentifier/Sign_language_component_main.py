@@ -8,7 +8,7 @@ import shutil
 app = FastAPI()
 
 # Initialize the inference class
-model_path = r"C:\Users\WW\Desktop\Final Reseach Data\rf_sign_language_model.joblib"
+model_path = r"ModalTraning\ObjectIdentifier\rf_sign_language_model.joblib"
 inference = SignLanguageInference(model_path)
 
 @app.get("/", response_class=HTMLResponse)
