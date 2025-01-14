@@ -43,3 +43,4 @@ async def predict(file: UploadFile = File(...)):
         # Clean up the temporary file
         Path(temp_path).unlink(missing_ok=True)
         
+        
