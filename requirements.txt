@@ -6,3 +6,5 @@ pillow
 opencv-python==4.7.0.68
 mediapipe~=0.10.14
 scikit-learn~=1.5.1
+fastapi
+uvicorn
