@@ -23,12 +23,18 @@ else:
 # Class Names
 
 def process_image(image: Image.Image):
-    """Convert the image to grayscale, resize to 28x28, and normalize."""
     image = image.convert("L")  # Convert to grayscale
     image = image.resize((28, 28))  # Resize to model input size
-    image = np.array(image) / 255.0  # Normalize
-    image = image.reshape((1, 28, 28, 1))  # Reshape for model
+    image = np.array(image)
+
+    # Ensure white strokes on black background
+    if np.mean(image) > 127:  # If background is white, invert
+        image = 255 - image
+
+    image = image / 255.0  # Normalize
+    image = image.reshape((1, 28, 28, 1))  # Reshape for model input
     return image
+
 
 def predict_drawing(image):
     """Predict the drawing using the model."""
@@ -53,7 +59,7 @@ def validate_prediction(file: BytesIO, selected_object: str):
 
     return {
         "predicted_class": predicted_class,
-        "confidence": round(float(confidence), 4),
+        # "confidence": round(float(confidence), 4),
         "selected_object": selected_object,
         "is_correct": is_correct
     }
