@@ -5,6 +5,7 @@ import tensorflow as tf
 from streamlit_drawable_canvas import st_canvas
 from PIL import Image
 import matplotlib.pyplot as plt
+from Constant.QuickDraw.quick_draw_constant import quick_draw_class_names
 
 # Model path
 model_path = 'quickDraw.keras'
@@ -22,8 +23,6 @@ else:
     st.error(f"Model file not found: {model_path}")
     model = None
 
-class_names = ['Apple', 'Cat', 'Airplane', 'Ear', 'Crab', 'Car', 'Eye', 'Banana', 'Bus', 'Star', 'Sun', 'Parrot', 'Dog',
-               'Mushroom', 'Cake', 'Elephant', 'Circle', 'Butterfly', 'Triangle', 'Mug']
 
 # Initialize the drawing board dimensions
 WIDTH, HEIGHT = 28, 28
@@ -33,11 +32,11 @@ def predict_drawing(image, top_k=5):
     """Predict the drawing using the model."""
     pred = model.predict(image)[0]
     top_indices = (-pred).argsort()[:top_k]
-    return [(class_names[i], pred[i]) for i in top_indices]
+    return [(quick_draw_class_names[i], pred[i]) for i in top_indices]
 
 
 # Streamlit UI
-st.title("Quick Draw Game ✈️")
+st.title("Quick Draw Game")
 st.write("Draw something on the board...")
 
 # Initialize session state for canvas and prediction result

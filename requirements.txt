@@ -1,11 +1,13 @@
-tensorflow~=2.18.0
-numpy~=1.26.4
-streamlit~=1.40.2
-matplotlib~=3.9.3
-pillow~=10.4.0
-opencv-python~=4.10.0.84
+tensorflow
+numpy
+streamlit
+matplotlib
+pillow
+opencv-python==4.7.0.68
 mediapipe~=0.10.14
 scikit-learn~=1.5.1
+fastapi
+uvicorn
 
 pandas~=2.2.3
 seaborn~=0.13.2
