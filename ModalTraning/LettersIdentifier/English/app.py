@@ -18,7 +18,7 @@ socketio = SocketIO(app=app, cors_allowed_origins="*")
 #CORS(app, origins="*")  # Allow requests from React frontend (localhost:5174)
 
 # Load the trained model
-model = load_model('./English/best_model3.h5')
+model = load_model('best_model3.h5')
 
 # Initialize MediaPipe Hands
 mp_hands = mp.solutions.hands
