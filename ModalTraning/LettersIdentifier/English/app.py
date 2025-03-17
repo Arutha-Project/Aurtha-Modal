@@ -18,7 +18,7 @@ socketio = SocketIO(app=app, cors_allowed_origins="*")
 #CORS(app, origins="*")  # Allow requests from React frontend (localhost:5174)
 
 # Load the trained model
-model = load_model('best_model3.h5')
+model = load_model('./best_model3.h5')
 
 # Initialize MediaPipe Hands
 mp_hands = mp.solutions.hands
@@ -27,11 +27,13 @@ mp_drawing = mp.solutions.drawing_utils
 hands = mp_hands.Hands(static_image_mode=False, min_detection_confidence=0.5, min_tracking_confidence=0.5)
 
 # Label encoder for decoding predictions
-with open('data.pickle', 'rb') as f:
+with open('./data.pickle', 'rb') as f:
     dataset = pickle.load(f)
 
+labels = dataset[1]  # Assuming labels are the second element in the tuple
+labels = labels.flatten()  # Flatten the labels array to 1D
 label_encoder = LabelEncoder()
-label_encoder.fit(dataset['labels'])
+label_encoder.fit(labels)
 
 # Dictionary for Sinhala letter mapping
 labels_dict = {
