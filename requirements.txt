@@ -3,3 +3,6 @@ numpy
 streamlit
 matplotlib
 pillow
+flask
+flask_socketio
+flask_cors
