@@ -10,15 +10,6 @@ import shutil
 # Initialize FastAPI app
 app = FastAPI()
 
-# Add CORS middleware
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Adjust for your frontend
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
 # locate script, project root, and models folder
 script_dir   = Path(__file__).resolve().parent
 project_root = script_dir.parent
