@@ -2,7 +2,7 @@ from pathlib import Path
 from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
-from number_inference import SignNumberInference
+from ModalTraning.NumbersIdentification.number_inference import SignNumberInference
 import numpy as np
 import tempfile
 import shutil
@@ -22,7 +22,7 @@ app.add_middleware(
 # locate script, project root, and models folder
 script_dir   = Path(__file__).resolve().parent
 project_root = script_dir.parent
-models_dir   = project_root / "NumbersIdentification"
+models_dir   = project_root / "Number"
 
 # just the filenames
 model_filenames = {
