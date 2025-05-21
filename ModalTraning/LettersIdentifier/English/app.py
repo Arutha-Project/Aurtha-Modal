@@ -35,7 +35,7 @@ labels = labels.flatten()  # Flatten the labels array to 1D
 label_encoder = LabelEncoder()
 label_encoder.fit(labels)
 
-# Dictionary for Sinhala letter mapping
+# Dictionary for English letter mapping
 labels_dict = {
     0: 'E', 1: 'B', 2: 'O', 3: 'L', 4: 'M', 5: 'N', 6: 'G', 7: 'P', 8: 'I', 9: 'R',
     10: 'A', 11: 'T', 12: 'C', 13: 'V', 14: 'K', 15: 'W', 16: 'X', 17: 'Y', 18: 'S', 19: 'D',
