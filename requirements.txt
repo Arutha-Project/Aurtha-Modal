@@ -6,5 +6,5 @@ pillow
 flask
 flask_socketio
 flask_cors
-mediapie
+mediapipe
 scikit-learn
