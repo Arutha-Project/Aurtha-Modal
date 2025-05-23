@@ -33,8 +33,11 @@ labels = labels.flatten()
 label_encoder = LabelEncoder()
 label_encoder.fit(labels)
 
-labels_dict = {i: label for i, label in enumerate(label_encoder.classes_)}
-
+labels_dict = {
+    0: 'E', 1: 'B', 2: 'O', 3: 'L', 4: 'M', 5: 'N', 6: 'G', 7: 'P', 8: 'I', 9: 'R',
+    10: 'A', 11: 'T', 12: 'C', 13: 'V', 14: 'K', 15: 'W', 16: 'X', 17: 'Y', 18: 'S', 19: 'D',
+    20: 'E', 21: 'F', 22: 'G', 23: 'H', 24: 'Q', 25: 'Y'
+}
 
 # MediaPipe
 mp_hands = mp.solutions.hands
