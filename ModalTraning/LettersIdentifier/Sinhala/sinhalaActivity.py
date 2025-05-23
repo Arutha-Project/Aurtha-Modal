@@ -25,14 +25,12 @@ app.add_middleware(
 model = load_model('./best_model.h5')
 
 with open('./data.pickle', 'rb') as f:
-    data_dict = pickle.load(f)
-
-data, labels = data_dict 
-labels = labels.flatten() 
+    dataset = pickle.load(f)
 
 label_encoder = LabelEncoder()
-label_encoder.fit(labels)
+label_encoder.fit(dataset['labels'])
 
+# Dictionary for Sinhala letter mapping
 labels_dict = {0: 'අ', 1: 'ආ', 2: 'ඇ', 3: 'ඉ',  4: 'ඊ',  5: 'උ',  6: 'ඌ',  7: 'එ',  8: 'ඒ',  9: 'ක්'}
 
 # MediaPipe
