@@ -1,7 +1,5 @@
 from pathlib import Path
 from fastapi import FastAPI, UploadFile, File, Form
-from fastapi.responses import HTMLResponse
-from fastapi.middleware.cors import CORSMiddleware
 from ModalTraning.NumbersIdentification.number_inference import SignNumberInference
 import numpy as np
 import tempfile
