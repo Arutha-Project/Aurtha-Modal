@@ -1,14 +1,13 @@
-from fastapi import FastAPI, WebSocket
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 import numpy as np
 import cv2
 import base64
 import pickle
-from tensorflow.keras.models import load_model
+import tensorflow as tf
 from sklearn.preprocessing import LabelEncoder
 import mediapipe as mp
-import json
 
 app = FastAPI()
 
@@ -22,7 +21,7 @@ app.add_middleware(
 )
 
 # Load model and label info
-model = load_model('./best_model3.h5')
+model = tf.keras.models.load_model('./best_model3.h5')
 
 with open('./data.pickle', 'rb') as f:
     data_dict = pickle.load(f)
