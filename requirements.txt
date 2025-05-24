@@ -14,9 +14,4 @@ joblib
 protobuf
 tqdm
 inference
-
-flask
-flask_socketio
-flask_cors
-mediapipe
 scikit-learn
