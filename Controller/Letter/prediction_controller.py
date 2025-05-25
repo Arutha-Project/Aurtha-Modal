@@ -2,7 +2,7 @@ from urllib.request import Request
 
 from fastapi import APIRouter, UploadFile, File
 from fastapi.responses import JSONResponse
-from Services.Letter.prediction_service import predict_letter_sinhala,predict_letter_sinhala_activity
+from Services.Letter.sinhala_prediction_service import predict_letter_sinhala,predict_letter_sinhala_activity
 from Services.Letter.english_prediction_service import predict_letter_english,predict_letter_english_activity
 
 
