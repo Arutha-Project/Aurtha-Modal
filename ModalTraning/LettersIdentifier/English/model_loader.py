@@ -19,8 +19,9 @@ if not os.path.exists(pickle_path):
 with open(pickle_path, 'rb') as f:
     dataset = pickle.load(f)
 
+labels = dataset[1].flatten()
 label_encoder = LabelEncoder()
-label_encoder.fit(dataset['labels'])
+label_encoder.fit(labels)
 
 labels_dict = {
     0: 'E', 1: 'B', 2: 'O', 3: 'L', 4: 'M', 5: 'N', 6: 'G', 7: 'P', 8: 'I', 9: 'R',
