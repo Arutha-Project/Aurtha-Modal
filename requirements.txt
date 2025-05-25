@@ -14,3 +14,4 @@ joblib
 protobuf
 tqdm
 inference
+scikit-learn
