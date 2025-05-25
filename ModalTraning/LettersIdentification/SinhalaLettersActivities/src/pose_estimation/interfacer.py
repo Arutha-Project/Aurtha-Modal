@@ -60,3 +60,4 @@ def mp_estimate_pose_static(image):
 def mp_estimate_pose_from_image(path):
     result = static_images_2(path)
     return mp_callback_static(result)
+    
