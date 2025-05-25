@@ -7,7 +7,6 @@ from Util.mediapipe_utils import hands
 import base64
 
 async def predict_letter_english(file: UploadFile):
-    # Read image from the uploaded file
     contents = await file.read()
     np_arr = np.frombuffer(contents, np.uint8)
     img = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
@@ -15,30 +14,42 @@ async def predict_letter_english(file: UploadFile):
     if img is None:
         return JSONResponse(content={"error": "Invalid image"}, status_code=400)
 
-    # Convert image to RGB for MediaPipe
     img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     results = hands.process(img_rgb)
 
-    if results.multi_hand_landmarks:
-        for hand_landmarks in results.multi_hand_landmarks:
-            data_aux = []
+    if results.multi_hand_landmarks and results.multi_handedness:
+        letters = []
+        for idx, hand_landmarks in enumerate(results.multi_hand_landmarks):
+            # Get handedness label for this hand: "Left" or "Right"
+            handedness_label = results.multi_handedness[idx].classification[0].label
 
-            x_ = [lm.x for lm in hand_landmarks.landmark]
+            # Extract landmarks x and y lists
+            if handedness_label == "Right":
+                # Flip x coordinates for right hand
+                x_ = [1 - lm.x for lm in hand_landmarks.landmark]
+            else:
+                x_ = [lm.x for lm in hand_landmarks.landmark]
             y_ = [lm.y for lm in hand_landmarks.landmark]
 
-            for lm in hand_landmarks.landmark:
-                data_aux.append((lm.x - min(x_)) / (max(x_) - min(x_) + 1e-6))
-                data_aux.append((lm.y - min(y_)) / (max(y_) - min(y_) + 1e-6))
+            # Normalize coordinates between 0 and 1
+            data_aux = []
+            for i in range(len(hand_landmarks.landmark)):
+                normalized_x = (x_[i] - min(x_)) / (max(x_) - min(x_) + 1e-6)
+                normalized_y = (y_[i] - min(y_)) / (max(y_) - min(y_) + 1e-6)
+                data_aux.append(normalized_x)
+                data_aux.append(normalized_y)
 
-            # Reshape for model input
             data_aux = np.array(data_aux).reshape(1, -1, 1)
-
-            # Predict letter
             prediction = model.predict(data_aux)
             predicted_label_index = np.argmax(prediction)
-            return labels_dict.get(predicted_label_index, "")
-        
-        return ""
+            predicted_letter = labels_dict.get(predicted_label_index, "")
+            letters.append(predicted_letter)
+
+        # Return all detected letters separated by space
+        return " ".join(letters)
+
+    return ""
+
 
 async def predict_letter_english_activity(frame_base64: str) -> str:
     try:
@@ -53,24 +64,38 @@ async def predict_letter_english_activity(frame_base64: str) -> str:
         img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         results = hands.process(img_rgb)
 
-        if results.multi_hand_landmarks:
-            for hand_landmarks in results.multi_hand_landmarks:
-                x_ = [lm.x for lm in hand_landmarks.landmark]
+        if results.multi_hand_landmarks and results.multi_handedness:
+            letters = []
+            for idx, hand_landmarks in enumerate(results.multi_hand_landmarks):
+                handedness_label = results.multi_handedness[idx].classification[0].label  # "Left" or "Right"
+
+                if handedness_label == "Right":
+                    # Flip x-coordinates horizontally for right hand
+                    x_ = [1 - lm.x for lm in hand_landmarks.landmark]
+                else:
+                    x_ = [lm.x for lm in hand_landmarks.landmark]
+
                 y_ = [lm.y for lm in hand_landmarks.landmark]
 
                 data_aux = []
-                for lm in hand_landmarks.landmark:
-                    data_aux.append((lm.x - min(x_)) / (max(x_) - min(x_)))
-                    data_aux.append((lm.y - min(y_)) / (max(y_) - min(y_)))
+                for i in range(len(hand_landmarks.landmark)):
+                    normalized_x = (x_[i] - min(x_)) / (max(x_) - min(x_) + 1e-6)
+                    normalized_y = (y_[i] - min(y_)) / (max(y_) - min(y_) + 1e-6)
+                    data_aux.append(normalized_x)
+                    data_aux.append(normalized_y)
 
                 data_aux = np.array(data_aux).reshape(1, -1, 1)
                 prediction = model.predict(data_aux)
                 predicted_index = np.argmax(prediction)
                 predicted_letter = labels_dict.get(predicted_index, "Unknown")
-                return predicted_letter
+                letters.append(predicted_letter)
+
+            # Return all detected letters separated by space
+            return " ".join(letters)
 
         return {"error": "No hand detected"}
     
     except Exception as e:
         print("Error:", e)
         return {"error": "Server error"}
+
