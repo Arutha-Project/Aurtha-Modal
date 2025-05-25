@@ -82,3 +82,4 @@ if __name__ == '__main__':
     # render_static_2_hands(saved_lm, land_marks2)
     save_landmark_plot('', land_marks2, '', '')
     # static_images(['/home/aka/Downloads/20220329_100524.jpg'])
+    
