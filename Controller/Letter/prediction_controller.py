@@ -40,3 +40,4 @@ async def predict_english_letter_base64(payload: dict):
     if isinstance(result, dict) and "error" in result:
         return JSONResponse(content=result, status_code=400)
     return JSONResponse(content={"predicted_letter": result})
+    
