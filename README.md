@@ -15,6 +15,7 @@ The **“අරුත” application** is a unique tool designed to enhance comm
 - [Model Repository](https://github.com/Arutha-Project/Aurtha-Modal)
 - [Backend Repository](https://github.com/Arutha-Project/Arutha-Backend)
 - [Frontend Repository](https://github.com/Arutha-Project/Arutha-Frontend)
+- [Web](https://arutha-research-website.onrender.com/)
 
 ---
 
@@ -27,10 +28,10 @@ The **“අරුත” application** is a unique tool designed to enhance comm
 
 | Member           | IT Number  | Sub-Objective                                        | Tasks                                                                             |
 | ---------------- | ---------- | ---------------------------------------------------- | --------------------------------------------------------------------------------- |
-| Kumara H.M.I.M   | IT21183904 | Letters Identification                               | Convert letters to/from signing symbols. Develop games for letter identification. |
-| Bandara J.M.O.N  | IT20655648 | Numbers Identification                               | Convert numbers to/from signing symbols. Develop games for number identification. |
-| Kalpage T.L.     | IT21261350 | Object and Environment Identification                | Create games for recognizing shapes, animals, and objects.                        |
-| Gangabadage U.D. | IT21157400 | Interactive Drawing Activities for Primary schoolers | Practice drawing symbols and objects to improve memory retention and recognition. |
+| [Kumara H.M.I.M](https://www.linkedin.com/in/ishara-madushan-3919ab217/)   | IT21183904 | Letters Identification                               | Convert letters to/from signing symbols. Develop games for letter identification. |
+| [Bandara J.M.O.N](https://www.linkedin.com/in/j-m-ovinda-namal-663a42252/)  | IT20655648 | Numbers Identification                               | Convert numbers to/from signing symbols. Develop games for number identification. |
+| [Kalpage T.L.](https://www.linkedin.com/in/thiwanka-kalpage/)      | IT21261350 | Object and Environment Identification                | Create games for recognizing shapes, animals, and objects.                        |
+| [Gangabadage U.D.](https://www.linkedin.com/in/ushan-dilusha-492b1519b/) | IT21157400 | Interactive Drawing Activities for Primary schoolers | Practice drawing symbols and objects to improve memory retention and recognition. |
 
 ## Features
 
